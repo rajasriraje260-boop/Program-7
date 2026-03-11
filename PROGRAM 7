@@ -1,0 +1,17 @@
+class Solution:
+    def findDuplicates(self, arr):
+        duplicates = []
+        
+        for num in arr:
+            # Use absolute value because the element might have been
+            # flipped to negative by a previous number
+            index = abs(num) - 1
+            
+            # If the value at this index is negative, we've seen 'num' before
+            if arr[index] < 0:
+                duplicates.append(abs(num))
+            else:
+                # Mark it as seen by making the value at that index negative
+                arr[index] = -arr[index]
+        
+        return duplicates
